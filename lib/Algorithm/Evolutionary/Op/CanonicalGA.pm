@@ -120,6 +120,7 @@ sub apply ($) {
       push @newPop, $clone1, $clone2;
   }
   #Re-sort
+  map {$pop->[$_]->DESTROY} ($popSize*$self->{_selrate} .. $popSize -1);
   @{$pop}[$popSize*$self->{_selrate}..$popSize-1] =  @newPop;
   @$pop = sort { $b->{_fitness} <=> $a->{_fitness} } @$pop;
 }
